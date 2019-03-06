@@ -1,0 +1,20 @@
+from datetime import datetime
+
+
+class Timer:
+    @property
+    def duration(self):
+        return self.__duration
+
+    def __enter__(self):
+        self.start = datetime.now()
+        return self
+
+    def __exit__(self, *args, **kwargs):
+        self.__duration = datetime.now() - self.start
+
+
+# with Timer() as timer:
+#     time.sleep(1)
+# timer.duration  # time delta
+# timer.duration.total_seconds()  # float 
